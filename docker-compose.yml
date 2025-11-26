@@ -1,10 +1,5 @@
-version: "3.8"
-
 services:
   release-notes-dinamico:
     build: .
-    environment:
-      GITHUB_TOKEN: ${GITHUB_TOKEN}
-      REPO_OWNER: ${REPO_OWNER}
-      REPO_NAME: ${REPO_NAME}
-    command: "${MSG}"
+    env_file:
+      - .env

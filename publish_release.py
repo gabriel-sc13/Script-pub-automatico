@@ -1,13 +1,20 @@
 import sys
 import os
 from datetime import datetime
-from github import Github
+import pytz
+from github import Github, Auth
 
 def publicar_no_pages(mensagem_release):
     token = os.getenv("GITHUB_TOKEN")
-    repo_user = os.getenv("REPO_USER")
+    repo_owner = os.getenv("REPO_OWNER")
     repo_name = os.getenv("REPO_NAME")
-    # repo_name = "gabriel-sc13/Script-pub-automatico"
+    
+    # MSG do .env é fallback
+    # Se a mensagem foi passada pelo .env, ela sobrescreve a do argumento
+    mensagem_env  = os.getenv("MSG")
+    if not mensagem_release:
+        mensagem_release = mensagem_env
+        
     file_path = "CHANGELOG.md"
 
     # Validação do token
@@ -24,11 +31,12 @@ def publicar_no_pages(mensagem_release):
     repo_full = f"{repo_owner}/{repo_name}"
 
     try:
-        print("Conectando à API do GitHub...")
+        print(f"Conectando à API do GitHub no repositório {repo_full}...")
+        
         # Autenticação
         # Instância permite chamadas à API
-        g = Github(token)
-        repo = g.get_repo(repo_name)
+        g = Github(auth=Auth.Token(token))
+        repo = g.get_repo(repo_full)
 
         # 2. Tenta buscar o arquivo existente
         # Precisamos do 'sha' (hash) do arquivo para ter permissão de editá-lo
@@ -45,7 +53,8 @@ def publicar_no_pages(mensagem_release):
 
         # 3. Formata o novo conteúdo (Markdown)
         # Adiciona a data e a mensagem no TOPO do conteúdo existente
-        data_hoje = datetime.now().strftime("%d/%m/%Y %H:%M")
+        tz = pytz.timezone("America/Sao_Paulo")
+        data_hoje = datetime.now(tz).strftime("%d/%m/%Y %H:%M")
         nova_entrada = f"## Release (Atual) - {data_hoje}\n{mensagem_release}\n\n---\n\n"
 
         titulo_historico = "# Histórico de Versões"
@@ -95,9 +104,5 @@ def publicar_no_pages(mensagem_release):
         print(f"Falha ao publicar no GitHub: {e}")
 
 if __name__ == "__main__":
-    # Validação de argumentos
-    if len(sys.argv) < 2:
-        print("Uso incorreto. Execute: python publish_release.py 'Texto da Release'")
-    else:
-        msg = sys.argv[1]
-        publicar_no_pages(msg)
+    msg_cli = sys.argv[1] if len(sys.argv) > 1 else None
+    publicar_no_pages(msg_cli)
