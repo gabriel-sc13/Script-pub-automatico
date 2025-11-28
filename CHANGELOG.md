@@ -1,10 +1,14 @@
-## Release (Atual) - 28/11/2025 11:11
-Minha nova release automática!
+## Release (Atual) - 28/11/2025 11:14
+Teste de mensagem manual
 
 ---
 
 # Histórico de Versões
 
+## Release - 28/11/2025 11:11
+Minha nova release automática!
+
+---
 ## Release - 28/11/2025 11:06
 Minha nova release automática!
 
