@@ -1,10 +1,14 @@
-## Release (Atual) - 28/11/2025 11:39
+## Release (Atual) - 28/11/2025 11:55
 Teste de mensagem manual
 
 ---
 
 # Histórico de Versões
 
+## Release - 28/11/2025 11:39
+Teste de mensagem manual
+
+---
 ## Release - 28/11/2025 11:14
 Teste de mensagem manual
 
