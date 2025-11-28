@@ -1,10 +1,14 @@
-## Release (Atual) - 28/11/2025 12:01
+## Release (Atual) - 28/11/2025 12:02
 Teste de atualização do index.html
 
 ---
 
 # Histórico de Versões
 
+## Release - 28/11/2025 12:01
+Teste de atualização do index.html
+
+---
 ## Release - 28/11/2025 11:55
 Teste de mensagem manual
 
