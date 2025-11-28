@@ -1,10 +1,14 @@
-## Release (Atual) - 28/11/2025 15:45
-Minha nova release automática!
+## Release (Atual) - 28/11/2025 15:46
+Teste via CLI
 
 ---
 
 # Histórico de Versões
 
+## Release - 28/11/2025 15:45
+Minha nova release automática!
+
+---
 ## Release - 28/11/2025 12:02
 Teste de atualização do index.html
 
